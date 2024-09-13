@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSM一键安装</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="Browserdetection.js"></script>
+<body>
+    <div class="main">
+        <div class="container">
+            <h1>H5_TSM一键安装/更新</h1>
+            <p class="description"><b>使用教程：</b>第一步：在右侧依次下载TSM相关组件到任意的<b>独立文件夹内</b> ；第二步：选择下载到的位置,然后游戏根目录。</p>
+            <p class="description"><b>如何更新TSM：</b>与安装方法相同，只需要下载需要更新的压缩包即可</p>
+            <div class="buttons">
+                <button id="select-src-dir">选择右侧下载文件的目录</button>
+                <button id="select-dest-dir" disabled>选择Sky游戏目录</button>
+            </div>
+            <p id="status">正在检测浏览器内核和设备类型...</p>
+        </div>
+
+        <div class="sidebar">
+            <h2>TSM 下载</h2>
+            <ul id="download-list">
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/TSM.zip" download>TSM.zip (必须 模组文件)</a></li>
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/sml-pc.zip" download>sml-pc.zip (必须 加载器文件)</a></li>
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/TSM_font.zip" download>TSM_font.zip (可选 界面汉化文件)</a></li>
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/TSMmap-ZH_CN.zip" download>TSMmap-ZH_CN.zip (可选 地图汉化文件)</a></li>
+            </ul>
+            <h2>TSM github加速代理(这里下载的版本是最新)</h2>
+            <ul id="download-list">
+                <li><a href="https://mirror.ghproxy.com/https://github.com/XeTrinityz/ThatSkyMod/releases/latest/download/TSM.zip" download>TSM.zip (必须 模组文件)</a></li>
+                <li><a href="https://mirror.ghproxy.com/https://github.com/lukas0x1/sml-pc/releases/latest/download/sml-pc.zip" download>sml-pc.zip (必须 加载器文件)</a></li>
+            </ul>
+            <h2>其它文件</h2>
+            <ul id="download-list">
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/TSM_font_TC.zip" download>TSM_font_TC.zip (可选 台湾繁体中文界面汉化)</a></li>
+                <li><a href="https://gitee.com/xiao-zhu245/TSMinstall/releases/download/TSM/VC_redist.x64.exe" download>VC_redist.x64.exe (可选 VC运行库)无法启动请下载使用</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="scripts.js"></script>
+</html>
