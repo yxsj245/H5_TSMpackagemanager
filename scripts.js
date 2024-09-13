@@ -34,24 +34,41 @@ document.getElementById('select-dest-dir').addEventListener('click', async () =>
                 const zip = new JSZip();
                 const zipContent = await zip.loadAsync(file);
 
-                // 解压并将文件保存到目标目录
-                for (const entryName in zipContent.files) {
-                    const entry = zipContent.files[entryName];
-                    if (entry.dir) {
-                        // 如果是目录，创建目录
-                        await createDirectoryInDest(entryName);
-                    } else {
-                        // 如果是文件，写入文件
-                        const fileData = await entry.async('blob');
-                        await writeFileToDest(entryName, fileData);
+                // 如果是 TSM.zip，解压到 mods 文件夹
+                if (fileName === 'TSM.zip') {
+                    await createDirectoryInDest('mods');
+                    for (const entryName in zipContent.files) {
+                        const entry = zipContent.files[entryName];
+                        const modsPath = `mods/${entryName}`;
+                        if (entry.dir) {
+                            // 创建 mods 文件夹中的子目录
+                            await createDirectoryInDest(modsPath);
+                        } else {
+                            // 写入文件到 mods 文件夹
+                            const fileData = await entry.async('blob');
+                            await writeFileToDest(modsPath, fileData);
+                        }
                     }
+                    document.getElementById('status').textContent = `已完成解压 ${fileName} 到 mods 文件夹`;
+                } else {
+                    // 对其他 ZIP 文件正常解压
+                    for (const entryName in zipContent.files) {
+                        const entry = zipContent.files[entryName];
+                        if (entry.dir) {
+                            // 如果是目录，创建目录
+                            await createDirectoryInDest(entryName);
+                        } else {
+                            // 如果是文件，写入文件
+                            const fileData = await entry.async('blob');
+                            await writeFileToDest(entryName, fileData);
+                        }
+                    }
+                    document.getElementById('status').textContent = `已完成解压 ${fileName}`;
                 }
-
-                document.getElementById('status').textContent = `已完成解压 ${fileName}`;
             }
         }
 
-        document.getElementById('status').textContent = '所有 ZIP 文件已成功解压！';
+        document.getElementById('status').textContent = 'TSM安装/更新 成功';
     } catch (error) {
         document.getElementById('status').textContent = `解压失败: ${error.message}`;
     }
